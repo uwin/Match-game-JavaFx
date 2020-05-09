@@ -289,7 +289,7 @@ public class a extends Application {
 
         TextInputDialog dialog = new TextInputDialog("USERNAME");
         dialog.setTitle("Leaderboard");
-
+        Optional<String> result = dialog.showAndWait();
         dialog.setHeaderText("Join the Leaderboard");
         dialog.setContentText("Please enter your name:");
         saveleaderboad(dialog.getResult());
