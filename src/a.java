@@ -289,6 +289,7 @@ public class a extends Application {
 
         TextInputDialog dialog = new TextInputDialog("USERNAME");
         dialog.setTitle("Leaderboard");
+
         dialog.setHeaderText("Join the Leaderboard");
         dialog.setContentText("Please enter your name:");
         saveleaderboad(dialog.getResult());
