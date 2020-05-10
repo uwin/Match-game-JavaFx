@@ -1,18 +1,13 @@
-import com.sun.deploy.net.MessageHeader;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
-
 import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,15 +17,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.util.*;
-
 public class a extends Application {
     int score;
     int mathces;
     int misses;
     int timeLeft;
-
     public static void main(String[] args) {
         launch();
     }
