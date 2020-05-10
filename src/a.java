@@ -1,3 +1,4 @@
+import com.sun.deploy.net.MessageHeader;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -5,15 +6,19 @@ import javafx.application.Platform;
 import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,10 +26,11 @@ import javafx.util.Duration;
 import java.util.*;
 
 public class a extends Application {
-    int score=0;
-    int mathces=0;
-    int misses=0;
-    int timeLeft = 60;
+    int score;
+    int mathces;
+    int misses;
+    int timeLeft;
+
     public static void main(String[] args) {
         launch();
     }
@@ -143,8 +149,8 @@ public class a extends Application {
                                 tempc.clear();
                                 if (mathces==6) {
                                     timer.cancel();
-                                    won();
                                     window.close();
+                                    won();
 
                                 }
                             }else {
@@ -235,7 +241,6 @@ public class a extends Application {
         windowW.setTitle("You Won");
         windowW.setScene(WScene);
         WPane.setStyle("-fx-background-color: #03560f;");
-        windowW.show();
 
         Label labelW = new Label();
         labelW.setText("You WON");
@@ -292,7 +297,10 @@ public class a extends Application {
         Optional<String> result = dialog.showAndWait();
         dialog.setHeaderText("Join the Leaderboard");
         dialog.setContentText("Please enter your name:");
+
+        windowW.show();
         saveleaderboad(dialog.getResult());
+        showleaderboad();
     }
     private void saveleaderboad(String name){
         File file = new File("C:/Users/uwiN viDamage/IdeaProjects/convert tile match Py to java/src/save.txt");
@@ -320,15 +328,35 @@ public class a extends Application {
         }
     }
     private void showleaderboad(){
+        ArrayList<String> leadboard = new ArrayList<>();
         Scanner scanSeats = null;
         try {
-            scanSeats = new Scanner(new File("seats.txt"));
+            scanSeats = new Scanner(new File("C:/Users/uwiN viDamage/IdeaProjects/convert tile match Py to java/src/save.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        while(scanSeats.hasNext()) {
-            System.out.println(scanSeats.next());
+        while(scanSeats.hasNext()) leadboard.add(scanSeats.next());
+
+        Stage windowWLb = new Stage();
+        AnchorPane LbWPane = new AnchorPane();
+        Scene LbWScene = new Scene(LbWPane, 300,600 );
+        //WScene.getStylesheets().add("/style.css");
+        windowWLb.setTitle("You Won");
+        windowWLb.setScene(LbWScene);
+        LbWPane.setStyle("-fx-background-color: #03560f;");
+        windowWLb.show();
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);
+
+        for(String i:leadboard){
+            Button text = new Button(i);
+            text.setStyle("-fx-background-color: #2a7334;");
+            text.setPrefSize(100,30);
+            vBox.getChildren().add(text);
         }
+        LbWPane.getChildren().add(vBox);
+        AnchorPane.setTopAnchor(vBox,20d);
+        AnchorPane.setLeftAnchor(vBox,100d);
     }
     private void reset(){
         score=0;
