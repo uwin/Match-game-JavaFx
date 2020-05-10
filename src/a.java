@@ -79,7 +79,6 @@ public class a extends Application {
                     });
                 }else{
                     timeLeft--;
-                    System.out.println(timeLeft);
                     Platform.runLater(() -> timerL.setText(String.valueOf(timeLeft)));
                 }
             }
@@ -129,7 +128,6 @@ public class a extends Application {
                             top.setImage(null);
                             temp.add(bottom.getImage());
                             tempc.add(top);
-                            System.out.println(temp);
                         }
 
                         if(temp.size()==2){
